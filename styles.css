@@ -1,0 +1,488 @@
+/* -----------------------------------------------------------
+   COLORES Y RESET
+   Colores UNAULA:
+   Rojo: #D8232A
+   Amarillo mostaza: #F1A023
+----------------------------------------------------------- */
+:root {
+  --unaula-red: #d8232a;
+  --unaula-yellow: #f1a023;
+  --unaula-dark: #231f20;
+  --unaula-grey: #4b4647;
+  --page-bg-top: #fff7f3;
+  --page-bg-bottom: #fff3e4;
+  --card-bg: #ffffff;
+  --card-border: rgba(0, 0, 0, 0.06);
+  --radius-lg: 1.4rem;
+  --radius-md: 1rem;
+  --shadow-soft: 0 14px 40px rgba(0, 0, 0, 0.1);
+  --transition-fast: 0.25s ease-out;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Source Sans 3", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  background: linear-gradient(180deg, var(--page-bg-top), var(--page-bg-bottom));
+  color: var(--unaula-dark);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem 3.5rem;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+/* -----------------------------------------------------------
+   HERO
+----------------------------------------------------------- */
+
+.hero {
+  position: relative;
+  padding: 1.5rem 0 3.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.75rem;
+  min-height: 70vh;
+  overflow: hidden;
+}
+
+.hero-bg-accent {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+      circle at top left,
+      rgba(216, 35, 42, 0.18),
+      transparent 55%
+    ),
+    radial-gradient(
+      circle at bottom right,
+      rgba(241, 160, 35, 0.18),
+      transparent 55%
+    );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-logo-container {
+  display: flex;
+  justify-content: center;
+  z-index: 1;
+}
+
+.logo-unaula {
+  width: 120px;
+  max-width: 40vw;
+  filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.25));
+}
+
+.hero-text {
+  text-align: center;
+  margin-top: 0.25rem;
+  z-index: 1;
+  animation: fadeUpHero 1s ease-out forwards;
+  opacity: 0;
+  transform: translateY(18px);
+}
+
+.hero-kicker {
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.76rem;
+  color: var(--unaula-red);
+  margin-bottom: 0.85rem;
+}
+
+.hero-title {
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  font-weight: 700;
+  margin-bottom: 0.7rem;
+  color: var(--unaula-dark);
+}
+
+.hero-subtitle {
+  font-size: 1rem;
+  max-width: 680px;
+  margin: 0 auto 1.4rem;
+  color: var(--unaula-grey);
+}
+
+.hero-button {
+  border: none;
+  border-radius: 999px;
+  padding: 0.8rem 1.6rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, var(--unaula-red), var(--unaula-yellow));
+  color: #ffffff;
+  box-shadow: 0 14px 35px rgba(216, 35, 42, 0.35);
+  cursor: pointer;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast),
+    filter var(--transition-fast);
+}
+
+.hero-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 18px 40px rgba(216, 35, 42, 0.4);
+  filter: brightness(1.04);
+}
+
+.hero-button:active {
+  transform: translateY(0);
+  box-shadow: 0 10px 25px rgba(216, 35, 42, 0.35);
+}
+
+/* Indicador de scroll */
+
+.scroll-indicator {
+  position: absolute;
+  left: 50%;
+  bottom: 0.4rem;
+  transform: translateX(-50%);
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--unaula-grey);
+  animation: fadeIn 1.2s ease-out 0.9s forwards;
+  opacity: 0;
+  z-index: 1;
+}
+
+.scroll-arrow {
+  width: 1.2rem;
+  height: 1.2rem;
+  border-left: 2px solid var(--unaula-yellow);
+  border-bottom: 2px solid var(--unaula-yellow);
+  transform: rotate(-45deg);
+  margin: 0.25rem auto 0;
+  animation: scrollBounce 1.2s infinite;
+}
+
+/* -----------------------------------------------------------
+   SECCIONES GENERALES
+----------------------------------------------------------- */
+
+.section-label {
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.75rem;
+  color: var(--unaula-red);
+  margin-bottom: 0.75rem;
+}
+
+.section-title {
+  font-size: clamp(1.45rem, 3vw, 1.9rem);
+  margin-bottom: 1.4rem;
+  color: var(--unaula-dark);
+}
+
+.content,
+.team {
+  margin-top: 3.1rem;
+}
+
+.content-grid {
+  display: grid;
+  gap: 1.35rem;
+}
+
+.content-grid--three {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+/* Cards */
+
+.content-card {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--card-border);
+  padding: 1.3rem 1.25rem;
+  box-shadow: var(--shadow-soft);
+  position: relative;
+  overflow: hidden;
+}
+
+.content-card::before {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  background: radial-gradient(
+    circle at top left,
+    rgba(241, 160, 35, 0.12),
+    transparent 55%
+  );
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+  pointer-events: none;
+}
+
+.content-card:hover::before {
+  opacity: 1;
+}
+
+.content-card h3 {
+  font-size: 1.08rem;
+  margin-bottom: 0.55rem;
+  color: var(--unaula-dark);
+}
+
+.content-card p {
+  font-size: 0.98rem;
+  color: var(--unaula-grey);
+}
+
+/* Variante de fondo alterno (sección con banda amarilla sutil) */
+.content-alt {
+  position: relative;
+}
+
+.content-alt::before {
+  content: "";
+  position: absolute;
+  inset: -1.5rem -100vw auto;
+  height: 30%;
+  background: linear-gradient(
+    90deg,
+    rgba(241, 160, 35, 0.14),
+    rgba(216, 35, 42, 0.05)
+  );
+  z-index: -1;
+}
+
+/* -----------------------------------------------------------
+   EQUIPO
+----------------------------------------------------------- */
+
+.team {
+  text-align: left;
+}
+
+.team-grid {
+  display: grid;
+  gap: 1.5rem;
+  margin-top: 1.4rem;
+}
+
+.person-card {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  padding: 1rem 1rem 1.2rem;
+  border: 1px solid var(--card-border);
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.person-photo-frame {
+  width: 100%;
+  max-width: 260px;
+  height: 260px;
+  border-radius: 1.3rem;
+  overflow: hidden;
+  background: #f9ece8;
+  margin-bottom: 0.85rem;
+  border: 2px solid rgba(216, 35, 42, 0.16);
+}
+
+.person-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Recorte para que se note menos el escote y la imagen se vea más seria */
+.person-photo--cristian {
+  object-position: 50% 18%;
+}
+
+.person-photo--isabela,
+.person-photo--cindy {
+  object-position: 50% 10%;
+}
+
+.person-name {
+  font-size: 1.08rem;
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+  color: var(--unaula-dark);
+}
+
+.person-role {
+  font-size: 0.9rem;
+  color: var(--unaula-red);
+}
+
+.plancha-number {
+  text-align: center;
+  margin-top: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--unaula-dark);
+}
+
+.team-faculty-note {
+  text-align: center;
+  margin-top: 0.3rem;
+  font-size: 0.9rem;
+  color: var(--unaula-grey);
+}
+
+/* -----------------------------------------------------------
+   CTA FINAL
+----------------------------------------------------------- */
+
+.cta {
+  margin-top: 3.1rem;
+  padding: 2rem 1.5rem 2.3rem;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(
+    135deg,
+    var(--unaula-red),
+    var(--unaula-yellow)
+  );
+  color: #230b0b;
+  box-shadow: 0 20px 50px rgba(216, 35, 42, 0.45);
+  text-align: left;
+}
+
+.cta h2 {
+  font-size: clamp(1.55rem, 3vw, 1.95rem);
+  margin-bottom: 0.9rem;
+}
+
+.cta-text {
+  margin-bottom: 1.1rem;
+  font-size: 1rem;
+}
+
+.cta-contact {
+  font-size: 0.96rem;
+}
+
+/* -----------------------------------------------------------
+   ANIMACIONES DE REVEAL (DISTINTAS)
+----------------------------------------------------------- */
+
+.reveal {
+  opacity: 0;
+}
+
+/* Estados iniciales según tipo */
+.reveal[data-animate="fade-up"] {
+  transform: translateY(40px);
+}
+
+.reveal[data-animate="slide-left"] {
+  transform: translateX(40px);
+}
+
+.reveal[data-animate="slide-right"] {
+  transform: translateX(-40px);
+}
+
+.reveal[data-animate="zoom-in"] {
+  transform: scale(0.96);
+}
+
+/* Estados visibles */
+.reveal.visible[data-animate="fade-up"],
+.reveal.visible[data-animate="slide-left"],
+.reveal.visible[data-animate="slide-right"],
+.reveal.visible[data-animate="zoom-in"] {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Animaciones base del hero */
+
+@keyframes fadeUpHero {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scrollBounce {
+  0%,
+  100% {
+    transform: translate(-50%, 0) rotate(-45deg);
+  }
+  50% {
+    transform: translate(-50%, 6px) rotate(-45deg);
+  }
+}
+
+/* -----------------------------------------------------------
+   RESPONSIVE
+----------------------------------------------------------- */
+
+@media (min-width: 720px) {
+  .page {
+    padding: 2rem 1.5rem 4rem;
+  }
+
+  .hero {
+    min-height: 78vh;
+  }
+
+  .team-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .content-grid--three {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .cta {
+    padding: 2.3rem 2.3rem 2.6rem;
+  }
+}
+
+/* Respeto a usuarios con reducción de movimiento */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    scroll-behavior: auto !important;
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
